@@ -1,20 +1,32 @@
 import './App.css';
-import { Header } from './commponents/header/header';
-import dataFromHeader from './commponents/data/headerData.json'
-import { MainComponent } from './commponents/main/main';
-import mainData from './commponents/data/mainData.json'
-import { Footer } from './commponents/footer/footer';
+import { Route , Routes} from 'react-router-dom';
+import { useState } from 'react'
+import { Welcome } from './commponents/welcome/welcome';
+import { Home } from './commponents/home/home';
+import { User } from './commponents/user/user';
+import { SkillComponent } from './commponents/skill/skill';
+
+
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  
+  const handleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+  }
 
-  const heading = dataFromHeader.headerData.heading1;
-  const author = dataFromHeader.headerData.author;
-  const thisYear = new Date().getFullYear();
   return (
     <div className='App'>
-      <Header heading1={heading} author={author}/>
-      <MainComponent user={mainData.userData}/>
-      <Footer date={thisYear}/>
+      <Routes>
+        <Route 
+         path='/' 
+         element={<Welcome isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>}/>
+        <Route 
+         path='home' 
+         element={<Home/>}/>
+         <Route path='user/:username' element={<User/>}/>
+         <Route path='skills/:skill' element={<SkillComponent/>}/>
+      </Routes>  
     </div>
   )
 }

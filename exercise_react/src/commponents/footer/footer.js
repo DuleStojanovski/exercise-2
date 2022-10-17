@@ -1,4 +1,6 @@
-export const Footer = ({date}) => {
+
+export const Footer = () => {
+    const date = new Date().getFullYear()
     return(
         <footer>
             <div className="footer-wrapper">
