@@ -1,9 +1,16 @@
+
 import { Footer } from "../footer/footer"
+import { NavBaR } from "../navBar/navBar"
 
 export const Welcome = ({handleLogin, isLoggedIn}) => {
     return(
         <div>
-            {isLoggedIn ? 'Welcome To React' : <p>Please Log In</p>}
+            {
+                isLoggedIn ?
+                <NavBaR/>:
+                <p>Please Log in</p>
+            }
+            
             <p></p>
             <button onClick={handleLogin}>
                 {isLoggedIn ? 'Logout' : 'Login'}
